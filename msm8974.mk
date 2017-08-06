@@ -61,6 +61,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true
 
+# kernel test
+PRODUCT_PACKAGE += \
+   mm-audio-native-test
+
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
@@ -102,47 +106,86 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml  \
     device/samsung/msm8974-common/configs/media_codecs.xml:system/etc/media_codecs.xml
 
-# OMX
-PRODUCT_PACKAGES += \
-    libc2dcolorconvert \
-    libdivxdrmdecrypt \
-    libOmxAacEnc \
-    libOmxAmrEnc \
-    libOmxCore \
-    libOmxEvrcEnc \
-    libOmxQcelp13Enc \
-    libOmxVdec \
-    libOmxVenc \
-    libI420colorconvert \
-    libstagefrighthw
+# LIBOPENCOREHW
+PRODUCT_PACKAGE += \
+    libopencorehw
 
 # qcom jar files
 PRODUCT_PACKAGES += \
-   libdashplayer \
-   libqcmediaplayer \
-   qcmediaplayer \
-   libextmedia_jni \
-   tcmiface
+    libdashplayer \
+    libqcmediaplayer \
+    qcmediaplayer \
+    libextmedia_jni \
+    tcmiface \
+    vcard \
+    flatland
 
 # MM_VIDEO
 PRODUCT_PACKAGES += \
-   mm-vdec-omx-property-mgr \
-   mm-vdec-omx-test \
-   mm-venc-omx-test \
-   mm-venc-omx-test720p \
-   mm-video-driver-test \
-   mm-video-encdrv-test \
-   libavenhancements \
-   ast-mm-vdec-omx-test \
-   liblasic
+    ast-mm-vdec-omx-test \
+    libavenhancements \
+    liblasic \
+    mm-vdec-omx-property-mgr \
+    mm-vdec-omx-test \
+    mm-venc-omx-test \
+    mm-venc-omx-test720p \
+    mm-video-driver-test \
+    mm-video-encdrv-test
 
-# LIBOPENCOREHW
-PRODUCT_PACKAGE += \
-   libopencorehw
+#MM_AUDIO
+MM_AUDIO := libOmxAacDec
+MM_AUDIO += libOmxAacEnc
+MM_AUDIO += libOmxAmrEnc
+MM_AUDIO += libOmxEvrcEnc
+MM_AUDIO += libOmxMp3Dec
+MM_AUDIO += libOmxQcelp13Enc
+MM_AUDIO += libOmxAc3HwDec
+PRODUCT_PACKAGES += $(MM_AUDIO)
 
-# kernel test
-PRODUCT_PACKAGE += \
-   mm-audio-native-test
+#OPENCORE
+OPENCORE := libomx_aacdec_sharedlibrary
+OPENCORE += libomx_amrdec_sharedlibrary
+OPENCORE += libomx_amrenc_sharedlibrary
+OPENCORE += libomx_avcdec_sharedlibrary
+OPENCORE += libomx_m4vdec_sharedlibrary
+OPENCORE += libomx_mp3dec_sharedlibrary
+OPENCORE += libomx_sharedlibrary
+OPENCORE += libopencore_author
+OPENCORE += libopencore_common
+OPENCORE += libopencore_download
+OPENCORE += libopencore_downloadreg
+OPENCORE += libopencore_mp4local
+OPENCORE += libopencore_mp4localreg
+OPENCORE += libopencore_net_support
+OPENCORE += libopencore_player
+OPENCORE += libopencore_rtsp
+OPENCORE += libopencore_rtspreg
+OPENCORE += libpvdecoder_gsmamr
+OPENCORE += libpvplayer_engine
+OPENCORE += libpvamrwbdecoder
+OPENCORE += libpvauthorengine
+OPENCORE += libomx_amr_component_lib
+OPENCORE += pvplayer
+OPENCORE += pvplayer_engine_test
+PRODUCT_PACKAGES += $(OPENCORE)
+
+# OMX
+PRODUCT_PACKAGES += \
+    libc2dcolorconvert \
+    libI420colorconvert \
+    libdivxdrmdecrypt \
+    libmm-omxcore \
+    libOmxCore \
+    libOmxVdec \
+    libOmxVdecHevc \
+    libOmxVenc \
+    libOmxVidEnc \
+    libI420colorconvert \
+    libstagefrighthw
+
+# qcom lib files
+PRODUCT_PACKAGES += \
+    libQcomUI
 
 # Power HAL
 PRODUCT_PACKAGES += \
